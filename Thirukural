@@ -1,0 +1,49 @@
+package org.kan;
+
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.Scrollbar;
+import java.awt.event.KeyEvent;
+import java.util.Iterator;
+
+import org.apache.bcel.generic.Select;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Thirukural {
+	public static void main(String args[]) throws InterruptedException, AWTException {
+		System.setProperty("webdriver.gecko.driver", "C:\\Taskc\\driver\\geckodriver.exe");
+
+		WebDriver driver = new FirefoxDriver();
+
+		driver.get("https://thirukkural.gokulnath.com/#/thirukkuralchapters/1/thirukkurals");
+
+		driver.manage().window().maximize();
+
+		Thread.sleep(1000);
+		Actions a = new Actions(driver);
+
+		driver.findElement(By.xpath("//a[text()='10']")).click();
+		Thread.sleep(1000);
+
+		// driver.findElement(By.xpath("(//div[@ng-bind-html=\"thirukkural.Tamil |
+		// renderHtml\"])[10]")).click();
+
+		Thread.sleep(1000);
+
+		WebElement ten = driver.findElement(By.name("//span[@i18n=\"common.Kural\"]"));
+
+		a.moveToElement(ten).perform();
+
+		Thread.sleep(1000);
+
+		String text = ten.getText();
+
+		System.out.println(text);
+
+	}
+}
